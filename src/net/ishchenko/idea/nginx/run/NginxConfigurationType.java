@@ -49,7 +49,12 @@ public class NginxConfigurationType implements ConfigurationType {
     }
 
     @NotNull
+    @Override
     public String getId() {
+        return "nginx.configuration.type";
+    }
+
+    public String getName() {
         return "nginx.configuration.type";
     }
 
@@ -58,6 +63,15 @@ public class NginxConfigurationType implements ConfigurationType {
     }
 
     private static class NginxConfigurationFactory extends ConfigurationFactory {
+
+        @Override
+        public String getId() {
+            return "nginx.configuration.type";
+        }
+
+        public String getName() {
+            return "nginx.configuration.type";
+        }
 
         protected NginxConfigurationFactory(@NotNull ConfigurationType type) {
             super(type);

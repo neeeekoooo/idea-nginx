@@ -166,7 +166,7 @@ public class NginxAnnotatingVisitor extends NginxElementVisitor implements Annot
     private void checkParentContext(NginxDirective node) {
         NginxContext parentContext = node.getParentContext();
         if (parentContext == null) {
-            //top level directive checks are made only main file. other files can be potentially included 
+            //top level directive checks are made only main file. other files can be potentially included
             if (nodeInMainConfig(node) && !keywords.checkCanResideInMainContext(node.getNameString())) {
                 holder.createWarningAnnotation(node, NginxBundle.message("annotator.directive.cantbeinmain", node.getNameString()));
             }
@@ -213,6 +213,3 @@ public class NginxAnnotatingVisitor extends NginxElementVisitor implements Annot
     }
 
 }
-
-
-

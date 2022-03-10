@@ -1,19 +1,20 @@
-import org.ajoberstar.grgit.Grgit
-
 plugins {
-    id "org.jetbrains.intellij" version "0.4.1"
-    id "org.ajoberstar.grgit" version "3.1.1"
+    id "org.jetbrains.intellij" version "0.7.3"
     id "java"
     id "idea"
 }
 
 group 'net.ishchenko.idea.nginx'
-version '0.1.9'
+version '0.1.10'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    maven { url 'file:///D:/Program Files/maven/repository' }
+    mavenLocal()
+    maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
+    maven { name "Bstek"; url "http://nexus.bsdn.org/content/groups/public/" }
     mavenCentral()
 }
 
@@ -48,18 +49,4 @@ task generateDocumentation(type: JavaExec) {
 }
 
 task getRepos() {
-    doLast {
-        def path = 'vendor/nginx'
-        if (!file(path).exists()) {
-            Grgit.clone(dir: file(path), uri: 'https://github.com/nginx/nginx.git')
-        } else {
-            Grgit.open(dir: file(path)).pull()
-        }
-        def luaPath = 'vendor/lua-nginx-module'
-        if (!file(luaPath).exists()) {
-            Grgit.clone(dir: file(luaPath), uri: 'https://github.com/openresty/lua-nginx-module.git')
-        } else {
-            Grgit.open(dir: file(luaPath)).pull()
-        }
-    }
 }
